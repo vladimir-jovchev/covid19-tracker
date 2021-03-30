@@ -5,8 +5,9 @@ import cx from 'classnames';
 
 import styles from './CardsStyle.module.css';
 
+let WorldPopulation = 7674000000;
+
 const Cards = ({data: {confirmed, recovered, deaths, lastUpdate}}) => {
-    console.log(confirmed)
     if(!confirmed){
         return 'Loading ...';
     }
@@ -25,6 +26,10 @@ const Cards = ({data: {confirmed, recovered, deaths, lastUpdate}}) => {
                         <Typography color="textSecondary" gutterBottom>{new Date(lastUpdate).toDateString()}</Typography>
 
                         <Typography variant="body2" >Number of active cases of COVID-19</Typography>
+                        
+                        <Typography color="textSecondary" gutterBottom>{((confirmed.value/WorldPopulation)*100).toFixed(2) + "%"}</Typography>
+
+
                     </CardContent>
                 </Grid>
 
@@ -39,6 +44,8 @@ const Cards = ({data: {confirmed, recovered, deaths, lastUpdate}}) => {
                         <Typography color="textSecondary" gutterBottom>{new Date(lastUpdate).toDateString()}</Typography>
 
                         <Typography variant="body2" >Number of recovered cases of COVID-19</Typography>
+
+                        <Typography color="textSecondary" gutterBottom>{((recovered.value/confirmed.value)*100).toFixed(2) + "%"}</Typography>
                     </CardContent>
                 </Grid>
 
@@ -53,6 +60,8 @@ const Cards = ({data: {confirmed, recovered, deaths, lastUpdate}}) => {
                         <Typography color="textSecondary" gutterBottom>{new Date(lastUpdate).toDateString()}</Typography>
 
                         <Typography variant="body2" >Number of deaths caused by COVID-19</Typography>
+
+                        <Typography color="textSecondary" gutterBottom>{((deaths.value/confirmed.value)*100).toFixed(2) + "%"}</Typography>
                     </CardContent>
                 </Grid>
             </Grid> 
